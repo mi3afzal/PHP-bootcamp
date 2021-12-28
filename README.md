@@ -1,6 +1,6 @@
 # PHP-bootcamp
 
-### We will go though following tech
+### We will go through the following tech. inshaAllah
 
 
 HTML5, CSS3, PHP, JavaScript\

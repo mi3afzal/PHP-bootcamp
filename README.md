@@ -19,8 +19,8 @@ REST API, SOAP API, RPC API, GraphQL, Socket, WebRTC, Push Notifications\
 Git, Github, Gitlab, Bitbucket 
 
 
-CodeIgniter, Laravel, Express.js, Wordpress\
-Multilanguage, Time zone mangement
+CodeIgniter, Laravel, Express.js, WordPress\
+Multilanguage, Time zone management
 
 Apache, Nginx, OpenLightSpeed\
 Linux, shared hosting, VPS hosting on cloud, Docker

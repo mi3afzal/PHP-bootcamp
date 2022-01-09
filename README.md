@@ -24,3 +24,9 @@ Multilanguage, Time zone management
 
 Apache, Nginx, OpenLightSpeed\
 Linux, shared hosting, VPS hosting on cloud, Docker
+
+
+
+#### Class 1 - Converting time between time zones at DB level
+[Video on Facebook](https://www.facebook.com/mi3afzal/videos/1600637443606589)\
+[Understanding MySQL TIMESTAMP](https://www.mysqltutorial.org/mysql-timestamp.aspx)

@@ -9,11 +9,6 @@
 <body>
 	<h2>This user lives in Karachi +5</h2>
 <?php
-/* $timezone = "Asia/Karachi";
-date_default_timezone_set($timezone);
-echo date_default_timezone_get();
-echo '<br>==========================================<br>'; */
-
 
 $mysqli = new mysqli("localhost", "root", "", "php_timezone_managment");
 if ($mysqli->connect_errno) {
@@ -21,13 +16,35 @@ if ($mysqli->connect_errno) {
 	exit();
 }
 
+$sql1 = "INSERT INTO `events` (`event_name`, `event_time`) VALUES ('Event scheduled at 8AM, +0', '2022-01-10 08:00:00');";
+/* $sql2 = "INSERT INTO `events` (`event_name`, `event_time`) VALUES ('Event scheduled at 8AM, +5', '2022-01-06 08:00:00');";
+$sql3 = "INSERT INTO `events` (`event_name`, `event_time`) VALUES ('Event scheduled at 8AM, +8', '2022-01-06 08:00:00');"; */
+
+
+$mysqli -> query('SET time_zone = "+00:00";');
+$mysqli->query($sql1);
+
+
 $mysqli -> query('SET time_zone = "+05:00";');
-//$mysqli -> query('SET time_zone = "{$timezone}";');
-
-
 if ($result = $mysqli->query("SELECT * FROM events")) {
 	while($row = $result->fetch_assoc()){
-		printf ("%s -> %s -> [%s] -> (%s) <br>\n", $row["id"], $row["event_name"], $row["event_time"], $row["created_at"]);
+		printf ("%s -> %s -> [%s] <br>\n", $row["id"], $row["event_name"], $row["event_time"]);
+	}
+	$result -> free_result();
+}
+
+$mysqli -> query('SET time_zone = "+04:00";');
+if ($result = $mysqli->query("SELECT * FROM events")) {
+	while($row = $result->fetch_assoc()){
+		printf ("%s -> %s -> [%s] <br>\n", $row["id"], $row["event_name"], $row["event_time"]);
+	}
+	$result -> free_result();
+}
+
+$mysqli -> query('SET time_zone = "+00:00";');
+if ($result = $mysqli->query("SELECT * FROM events")) {
+	while($row = $result->fetch_assoc()){
+		printf ("%s -> %s -> [%s] <br>\n", $row["id"], $row["event_name"], $row["event_time"]);
 	}
 	$result -> free_result();
 }

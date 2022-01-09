@@ -9,11 +9,6 @@
 <body>
 	<h2>This user lives in London +0</h2>
 <?php
-/* $timezone = "Europe/London";
-date_default_timezone_set($timezone);
-echo date_default_timezone_get();
-echo '<br>==========================================<br>'; */
-
 
 $mysqli = new mysqli("localhost", "root", "", "php_timezone_managment");
 if ($mysqli->connect_errno) {
@@ -22,9 +17,6 @@ if ($mysqli->connect_errno) {
 }
 
 $mysqli -> query('SET time_zone = "+08:00";');
-//$mysqli -> query('SET time_zone = "{$timezone}";');
-
-
 if ($result = $mysqli->query("SELECT * FROM events")) {
 	while($row = $result->fetch_assoc()){
 		printf ("%s -> %s -> [%s] -> (%s) <br>\n", $row["id"], $row["event_name"], $row["event_time"], $row["created_at"]);

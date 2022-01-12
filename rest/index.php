@@ -17,7 +17,6 @@
         }
     </style>
 </head>
-
 <body>
 
         <b>Create Record</b>
@@ -31,7 +30,24 @@
             <button type="submit" name="submit">&nbsp;Save</button>
         </form>
 
+        <script>
+            const formData = new FormData();
+            const fileField = document.querySelector('input[type="file"]');
 
+            formData.append('title', 'abc123');
+            formData.append('avatar', fileField.files[0]);
+
+            fetch('http://localhost:8080/www/PHP-bootcamp-2022/rest/api/v1/images/create.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then((response) => response.json())
+            .then((result) => {
+                console.log('Success:', result);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        </script>
 </body>
-
 </html>

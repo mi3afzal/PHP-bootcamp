@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 1000;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/barlow/v5/7cHqv4kjgoGqM7E3w-oc4A.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 1000;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/barlow/v5/7cHpv4kjgoGqM7EPCw.ttf) format('truetype');
+}
